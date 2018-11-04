@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-const Todo = ({todo}) => {
+const Todo = (props) => {
+    console.log(props);
     return (
         <div>
             <span className='m-2'>
-                {todo.name}
+                {props.todo.name}
             </span>
-            <input type='checkbox'></input>
+            <input type='checkbox' onClick={() => props.onChange(props.id)}></input>
         </div>
      );
 }
