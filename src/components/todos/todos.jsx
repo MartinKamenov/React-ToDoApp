@@ -15,9 +15,9 @@ class ToDos extends Component {
         const completed = this.state.todos[id].completed;
         console.log('here');
         if(completed) {
-            return <span className='completed'>Completed</span>;
+            return <span className='m-2 completed'>Completed</span>;
         } else {
-            return <span className='incompleted'>Not completed</span>;
+            return <span className='m-2 incompleted'>Not completed</span>;
         }
     }
 
@@ -28,13 +28,18 @@ class ToDos extends Component {
         todos[id] = todo;
         this.setState({todos});
     }
+
+    handleDelete = id => {
+        const todos = this.state.todos.filter((t, i) => i !== id);
+        this.setState({todos});
+    }
     render() { 
         return ( 
             <div>
                 <h1>Current tasks</h1>
                 {this.state.todos.map((t, i) => 
                     <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
-                    children={this.showStatusOfTodo(i)}/>
+                    children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
                 )}
             </div>
         );

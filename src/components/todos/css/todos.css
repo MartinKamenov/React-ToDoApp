@@ -1,5 +1,6 @@
 .completed {
     background-color: #26a86b;
+    color: white;
     border-radius: 25px;
     padding: 5px;
     cursor:default;
@@ -7,6 +8,7 @@
 
 .incompleted {
     background-color: #a3012c;
+    color: white;
     border-radius: 25px;
     padding: 5px;
     cursor:default;
@@ -19,4 +21,8 @@
 .status_changer:hover {
     border-bottom: 1px solid red;
     cursor:pointer;
+}
+
+.delete-btn {
+    font-weight: bold !important;
 }
