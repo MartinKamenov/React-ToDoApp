@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todo from './todo';
+import './css/todos.css'
 
 class ToDos extends Component {
     state = { 
@@ -8,6 +9,16 @@ class ToDos extends Component {
             { name: 'Buy food', completed: false },
             { name: 'Feed the cat', completed: false }
         ]
+    }
+
+    showStatusOfTodo(id) {
+        const completed = this.state.todos[id].completed;
+        console.log('here');
+        if(completed) {
+            return <span className='completed'>Completed</span>;
+        } else {
+            return <span className='incompleted'>Not completed</span>;
+        }
     }
 
     handleChange = (id) => {
@@ -22,7 +33,8 @@ class ToDos extends Component {
             <div>
                 <h1>Current tasks</h1>
                 {this.state.todos.map((t, i) => 
-                    <Todo key={i} todo={t} id={i} onChange={this.handleChange}/>
+                    <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
+                    children={this.showStatusOfTodo(i)}/>
                 )}
             </div>
         );

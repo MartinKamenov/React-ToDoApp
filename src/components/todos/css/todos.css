@@ -1,0 +1,20 @@
+.completed {
+    background-color: #26a86b;
+    padding: 5px;
+    cursor:default;
+}
+
+.incompleted {
+    background-color: #a3012c;
+    padding: 5px;
+    cursor:default;
+}
+
+.todo {
+    margin: 20px;
+}
+
+.status_changer:hover {
+    border-bottom: 1px solid red;
+    cursor:pointer;
+}
