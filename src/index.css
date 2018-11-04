@@ -6,9 +6,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #dbdbdb !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.nav-fragment {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #2c5059;
+  background-color: #edeaea;
+  border-radius: 40px;
 }
