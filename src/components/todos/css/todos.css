@@ -26,3 +26,9 @@
 .delete-btn {
     font-weight: bold !important;
 }
+
+.nav-fragment {
+    padding: 20px;
+    border: 1px solid #2c5059;
+    border-radius: 40px;
+}

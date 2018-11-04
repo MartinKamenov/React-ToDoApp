@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './todo';
 import './css/todos.css'
+import AddToDo from './addTodo';
 
 class ToDos extends Component {
     state = { 
@@ -33,14 +34,23 @@ class ToDos extends Component {
         const todos = this.state.todos.filter((t, i) => i !== id);
         this.setState({todos});
     }
+
+    handleAdd = (name) => {
+        const newTodo = {name};
+        this.setState({ todos: this.state.todos.push(newTodo) });
+    }
     render() { 
         return ( 
             <div>
-                <h1>Current tasks</h1>
-                {this.state.todos.map((t, i) => 
-                    <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
-                    children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
-                )}
+                <h1 className="m-2">Tasks App</h1>
+                <AddToDo onAdd={this.handleAdd}/>
+                <h2 className="m-2">Current Todos</h2>
+                <div className="nav-fragment">
+                    {this.state.todos.map((t, i) => 
+                        <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
+                        children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
+                    )}
+                </div>
             </div>
         );
     }

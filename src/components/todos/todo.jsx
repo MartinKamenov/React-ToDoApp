@@ -7,7 +7,9 @@ const Todo = (props) => {
                 {props.todo.name}
             </span>
             {props.children}
-            <button className="delete-btn btn btn-danger" onClick={() => props.onDelete(props.id)}>&times;</button>
+            <button className="delete-btn btn btn-danger"
+                onClick={() => props.onDelete(props.id)}>&times;
+            </button>
         </div>
      );
 }
