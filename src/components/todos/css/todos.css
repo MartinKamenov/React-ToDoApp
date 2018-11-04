@@ -1,11 +1,13 @@
 .completed {
     background-color: #26a86b;
+    border-radius: 25px;
     padding: 5px;
     cursor:default;
 }
 
 .incompleted {
     background-color: #a3012c;
+    border-radius: 25px;
     padding: 5px;
     cursor:default;
 }
