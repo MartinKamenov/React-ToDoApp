@@ -26,6 +26,16 @@
 .delete-btn {
     font-weight: bold !important;
 }
-.header {
-    text-align: center;
+
+.todo-input {
+    padding: 5px;
+    border-radius: 13px;
+}
+
+.checkbox {
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    padding: 10px;
 }
