@@ -14,7 +14,6 @@ class ToDos extends Component {
 
     showStatusOfTodo(id) {
         const completed = this.state.todos[id].completed;
-        console.log('here');
         if(completed) {
             return <span className='m-2 completed'>Completed</span>;
         } else {
@@ -38,15 +37,17 @@ class ToDos extends Component {
     handleAdd = (state) => {
         const newTodo = state;
         const todos = this.state.todos;
+        if(!newTodo.name) {
+            return;
+        }
         todos.push(newTodo);
         this.setState({ todos: todos });
     }
     render() { 
-        console.log(this.state.todos);
         return ( 
             <div className="container">
                 <h1 className="m-2 header">Tasks App</h1>
-                <AddToDo onAdd={this.handleAdd}/>
+                <AddToDo onAdd={this.handleAdd} inputValue='' completed={true}/>
                 <div className="nav-fragment">
                     <h2 className="m-2 header">Current Todos</h2>
                     {this.state.todos.map((t, i) => 

@@ -18,8 +18,15 @@
     margin: 20px;
 }
 
+.status_changer {
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
 .status_changer:hover {
-    border-bottom: 1px solid red;
+    padding: 10px;
+    border-bottom: 2px solid red;
+    border-right: 2px solid red;
     cursor:pointer;
 }
 
