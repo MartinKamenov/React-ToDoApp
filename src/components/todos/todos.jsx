@@ -35,13 +35,16 @@ class ToDos extends Component {
         this.setState({todos});
     }
 
-    handleAdd = (name) => {
-        const newTodo = {name};
-        this.setState({ todos: this.state.todos.push(newTodo) });
+    handleAdd = (state) => {
+        const newTodo = state;
+        const todos = this.state.todos;
+        todos.push(newTodo);
+        this.setState({ todos: todos });
     }
     render() { 
+        console.log(this.state.todos);
         return ( 
-            <div>
+            <div className="container">
                 <h1 className="m-2 header">Tasks App</h1>
                 <AddToDo onAdd={this.handleAdd}/>
                 <div className="nav-fragment">
