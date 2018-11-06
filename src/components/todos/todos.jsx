@@ -14,11 +14,11 @@ class ToDos extends Component {
 
     showStatusOfTodo(id) {
         const completed = this.state.todos[id].completed;
-        if(completed) {
-            return <span className='m-2 completed'>Completed</span>;
-        } else {
-            return <span className='m-2 incompleted'>Not completed</span>;
-        }
+        const classList = "m-2 " + (completed ? "completed" : "incompleted");
+        const status = this.state.todos[id].completed ? "Completed" : "Not completed";
+        
+        console.log(completed);
+        return <span className={classList}>{status}</span>;
     }
 
     handleChange = (id) => {
