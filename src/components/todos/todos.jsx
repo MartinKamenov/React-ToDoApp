@@ -9,7 +9,27 @@ class ToDos extends Component {
             { name: 'Create To Do app', completed: false },
             { name: 'Buy food', completed: false },
             { name: 'Feed the cat', completed: false }
-        ]
+        ],
+        addTodo: {
+            inputValue: '',
+            completed: false
+        }
+    }
+
+    handleUpdateInputValue = evt => {
+        this.setState({
+            addTodo: {
+                inputValue: evt.target.value
+            }
+        });
+    }
+
+    handleUpdateCheckboxValue = () => {
+        this.setState({
+            addTodo: {
+                completed: !this.state.completed
+            }
+        });
     }
 
     showStatusOfTodo(id) {
@@ -32,20 +52,28 @@ class ToDos extends Component {
         this.setState({todos});
     }
 
-    handleAdd = (state) => {
-        const newTodo = state;
+    handleAdd = () => {
+        const newTodo = this.state.addTodo;
         const todos = this.state.todos;
+        console.log(newTodo);
         if(!newTodo.name) {
             return;
         }
         todos.push(newTodo);
-        this.setState({ todos: todos });
+        this.setState({ 
+            addTodo: {
+                inputValue: '',
+                completed: false
+            }
+        });
     }
     render() { 
         return ( 
             <div className="container">
                 <h1 className="m-2 header">Tasks App</h1>
-                <AddToDo onAdd={this.handleAdd} inputValue='' completed={true}/>
+                <AddToDo onAdd={this.handleAdd} onChangedInputValue={this.handleUpdateInputValue} 
+                    onChangedCheckbox={this.handleUpdateCheckboxValue}
+                    completed={this.state.addTodo.completed}/>
                 <div className="nav-fragment">
                     <h2 className="m-2 header">Current Todos</h2>
                     {this.state.todos.map((t, i) => 
