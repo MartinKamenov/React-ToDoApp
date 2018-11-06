@@ -16,8 +16,6 @@ class ToDos extends Component {
         const completed = this.state.todos[id].completed;
         const classList = "m-2 " + (completed ? "completed" : "incompleted");
         const status = this.state.todos[id].completed ? "Completed" : "Not completed";
-        
-        console.log(completed);
         return <span className={classList}>{status}</span>;
     }
 
