@@ -11,25 +11,21 @@ class ToDos extends Component {
             { name: 'Feed the cat', completed: false }
         ],
         addTodo: {
-            inputValue: '',
+            name: '',
             completed: false
         }
     }
 
     handleUpdateInputValue = evt => {
-        this.setState({
-            addTodo: {
-                inputValue: evt.target.value
-            }
-        });
+        const addTodo = this.state.addTodo;
+        addTodo.name = evt.target.value;
+        this.setState({ addTodo });
     }
 
     handleUpdateCheckboxValue = () => {
-        this.setState({
-            addTodo: {
-                completed: !this.state.completed
-            }
-        });
+        const addTodo = this.state.addTodo;
+        addTodo.completed = !addTodo.completed;
+        this.setState({ addTodo });
     }
 
     showStatusOfTodo(id) {
@@ -53,16 +49,19 @@ class ToDos extends Component {
     }
 
     handleAdd = () => {
-        const newTodo = this.state.addTodo;
+        const newTodo = {
+            name: this.state.addTodo.name, 
+            completed: this.state.addTodo.completed
+        };
         const todos = this.state.todos;
-        console.log(newTodo);
-        if(!newTodo.name) {
+        if(!(newTodo.name)) {
             return;
         }
         todos.push(newTodo);
-        this.setState({ 
+        this.setState({
+            todos: todos,
             addTodo: {
-                inputValue: '',
+                name: "",
                 completed: false
             }
         });
@@ -71,7 +70,9 @@ class ToDos extends Component {
         return ( 
             <div className="container">
                 <h1 className="m-2 header">Tasks App</h1>
-                <AddToDo onAdd={this.handleAdd} onChangedInputValue={this.handleUpdateInputValue} 
+                <AddToDo onAdd={this.handleAdd}
+                    addTodo={this.state.addTodo}
+                    onChangedInputValue={this.handleUpdateInputValue} 
                     onChangedCheckbox={this.handleUpdateCheckboxValue}
                     completed={this.state.addTodo.completed}/>
                 <div className="nav-fragment">
