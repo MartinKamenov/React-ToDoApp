@@ -8,7 +8,7 @@ const AddTodo = (props) => {
                 onChange={(ev) =>props.onChangedInputValue(ev)}
                 placeholder="Enter name" type="text"/>
             <input className="m-1 checkbox" type="checkbox" 
-                onClick={props.addTodo.onChangedCheckbox}/>
+                onChange={props.onChangedCheckbox} checked={props.addTodo.completed}/>
             <button className="m-2 btn btn-success" onClick={props.onAdd}>Add</button>
         </div>
     );
