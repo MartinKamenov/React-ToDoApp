@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Todo from './todo';
 import './css/todos.css'
 import AddToDo from './addTodo';
+import TodoStatus from './todoStatus';
 
 class ToDos extends Component {
     state = { 
@@ -66,10 +67,24 @@ class ToDos extends Component {
             }
         });
     }
+
+    getCompletedPercent() {
+        const percent = (this.state.todos.filter(t => t.completed).length / this.state.todos.length) * 100;
+        return percent + '%';
+    }
+
+    getIncompletedPercent() {
+        const percent = (this.state.todos.filter(t => !t.completed).length / this.state.todos.length) * 100;
+        return percent + '%';
+    }
+
     render() { 
         return ( 
             <div className="container">
                 <h1 className="m-2 header">Tasks App</h1>
+                <TodoStatus totalCount={this.state.todos.length}
+                    completedPercent={this.getCompletedPercent()}
+                    notCompletedPercent={this.getIncompletedPercent()}/>
                 <AddToDo onAdd={this.handleAdd}
                     addTodo={this.state.addTodo}
                     onChangedInputValue={this.handleUpdateInputValue} 
