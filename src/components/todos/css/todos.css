@@ -1,4 +1,6 @@
 .completed {
+    line-height: 100%;
+    text-align: center;
     background-color: #26a86b;
     color: white;
     border-radius: 25px;
@@ -7,6 +9,8 @@
 }
 
 .incompleted {
+    line-height: 100%;
+    text-align: center;
     background-color: #a3012c;
     color: white;
     border-radius: 25px;
@@ -20,6 +24,7 @@ span.completed-percenteger {
     background-color: #26a86b;
     color: white;
     height: 28px;
+    line-height: 28px;
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
@@ -31,6 +36,7 @@ span.incompleted-percenteger {
     background-color: #a3012c;
     color: white;
     height: 28px;
+    line-height: 28px;
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
@@ -47,12 +53,14 @@ span.incompleted-percenteger {
 
 .status_changer {
     padding: 10px;
+    line-height: 100%;
     border: 2px solid transparent;
     border-radius: 10%;
 }
 .status_changer:hover {
     border-radius: 10px;
     padding: 10px;
+    line-height: 100%;
     border-bottom: 2px solid #ba0000;
     border-right: 2px solid #ba0000;
     border-top: 2px solid red;
@@ -67,6 +75,7 @@ span.incompleted-percenteger {
 }
 
 .delete-btn {
+    line-height: 100%;
     font-weight: bold !important;
 }
 
