@@ -70,14 +70,20 @@ class ToDos extends Component {
 
     getCompletedPercent() {
         const todos = this.state.todos;
-        const percent = ((todos.filter(t => t.completed).length / todos.length) * 100).toFixed(2);
-        return percent;
+        const completedTodos = todos.filter(t => t.completed).length;
+        const percent = (( completedTodos / todos.length) * 100).toFixed(2);
+        let classList = 'completed-percenteger';
+        classList += completedTodos ? '' : ' gone'; 
+        return { percent: percent + '%', classList };
     }
 
     getIncompletedPercent() {
         const todos = this.state.todos;
-        const percent = ((todos.filter(t => !t.completed).length / todos.length) * 100).toFixed(2);
-        return percent;
+        const incompletedTodos = todos.filter(t => !t.completed).length;
+        const percent = ((incompletedTodos / todos.length) * 100).toFixed(2);
+        let classList = 'incompleted-percenteger';
+        classList += incompletedTodos ? '' : ' gone'; 
+        return { percent: percent + '%', classList };
     }
 
     render() { 
