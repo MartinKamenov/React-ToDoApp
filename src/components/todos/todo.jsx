@@ -7,9 +7,11 @@ const Todo = (props) => {
                 {props.todo.name}
             </span>
             {props.children}
-            <button className="delete-btn btn btn-danger col-md-4"
-                onClick={() => props.onDelete(props.id)}>&times;
-            </button>
+            <div className="col-md-4" style={{textAlign: 'center'}}>
+                <button className="delete-btn btn btn-danger"
+                    onClick={() => props.onDelete(props.id)}>&times;
+                </button>
+            </div>
         </div>
      );
 }

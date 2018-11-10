@@ -68,6 +68,18 @@ class ToDos extends Component {
         });
     }
 
+    handleCompleteAll = () => {
+        const todos = this.state.todos;
+        todos.forEach(t => t.completed=true);
+        this.setState({todos});
+    }
+
+    handleIncompleteAll = () => {
+        const todos = this.state.todos;
+        todos.forEach(t => t.completed=false);
+        this.setState({ todos });
+    }
+
     getCompletedPercent() {
         const todos = this.state.todos;
         const completedTodos = todos.filter(t => t.completed).length;
@@ -90,7 +102,10 @@ class ToDos extends Component {
         return ( 
             <div className="container">
                 <h1 className="m-2 header">Tasks App</h1>
-                <TodoStatus totalCount={this.state.todos.length}
+                <TodoStatus
+                    onCompleteAll={this.handleCompleteAll}
+                    onIncompleteAll={this.handleIncompleteAll}
+                    totalCount={this.state.todos.length}
                     completedPercent={this.getCompletedPercent()}
                     notCompletedPercent={this.getIncompletedPercent()}/>
                 <AddToDo onAdd={this.handleAdd}

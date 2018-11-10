@@ -17,6 +17,10 @@ const TodoStatus = (props) => {
                     </span>
                 </div>
             </div>
+            <div className="col-md-6" style={{ textAlignment: 'center'}}>
+                <button onClick={props.onCompleteAll} className="m-2 btn btn-success">Completed</button>
+                <button onClick={props.onIncompleteAll} className="m-2 btn btn-danger">Incompleted</button>
+            </div>
         </div>
     );
 }
