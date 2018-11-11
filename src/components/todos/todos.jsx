@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Todo from './todo';
+import Todo from './Todo';
 import './css/todos.css'
-import AddToDo from './addTodo';
-import TodoStatus from './todoStatus';
+import AddToDo from './AddTodo';
+import TodoStatus from './TodoStatus';
 
 class ToDos extends Component {
     state = { 
