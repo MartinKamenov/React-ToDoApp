@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/navigationBar/NavBar';
-import ToDos from './components/todos/todos';
+import ToDos from './components/todos/Todos';
 
 
 class App extends Component {
