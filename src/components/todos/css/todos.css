@@ -43,6 +43,20 @@ span.incompleted-percenteger {
     text-overflow: ellipsis;
 }
 
+
+.left-indicator {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.right-indicator {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.only-indicator {
+    border-radius: 20px;
+}
+
 .gone {
     display: none !important;
 }
@@ -92,4 +106,8 @@ span.incompleted-percenteger {
     -webkit-transform: scale(1.5); /* Safari and Chrome */
     -o-transform: scale(1.5); /* Opera */
     padding: 10px;
+}
+
+.center {
+    text-align: center;
 }
