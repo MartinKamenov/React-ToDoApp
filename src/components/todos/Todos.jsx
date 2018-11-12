@@ -85,6 +85,11 @@ class ToDos extends Component {
         const completedTodos = todos.filter(t => t.completed).length;
         const percent = (( completedTodos / todos.length) * 100).toFixed(2);
         let classList = 'completed-percenteger';
+        if(percent < 100) {
+            classList += ' left-indicator';
+        } else {
+            classList += ' only-indicator';
+        }
         classList += completedTodos ? '' : ' gone'; 
         return { percent: percent + '%', classList };
     }
@@ -94,6 +99,11 @@ class ToDos extends Component {
         const incompletedTodos = todos.filter(t => !t.completed).length;
         const percent = ((incompletedTodos / todos.length) * 100).toFixed(2);
         let classList = 'incompleted-percenteger';
+        if(percent < 100) {
+            classList += ' right-indicator';
+        } else {
+            classList += ' only-indicator';
+        }
         classList += incompletedTodos ? '' : ' gone'; 
         return { percent: percent + '%', classList };
     }
