@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import './NavBar.css';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 const NavBar = () => {
-    return ( 
+    return (
         <Navbar inverse collapseOnSelect>
             <Navbar.Header>
                 <Navbar.Brand>
@@ -14,11 +14,15 @@ const NavBar = () => {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <Link className="nav-link navbar_element" to="/">Home</Link>
+                    <NavItem>
+                        <Link className="nav-link navbar_element" to="/">Home</Link>
+                    </NavItem>
                 </Nav>
                 <Nav>
-                    <Link className="nav-link navbar_element" to="/about">About</Link>
-                </Nav>       
+                    <NavItem>
+                        <Link className="nav-link navbar_element" to="/about">About</Link>
+                    </NavItem>
+                </Nav>
             </Navbar.Collapse>
         </Navbar>
      );
