@@ -111,7 +111,7 @@ class ToDos extends Component {
     render() { 
         return ( 
             <div className="container">
-                <h1 className="m-2 header center">Tasks App</h1>
+                <h1 className="header center">Tasks App</h1>
                 <TodoStatus
                     onCompleteAll={this.handleCompleteAll}
                     onIncompleteAll={this.handleIncompleteAll}
@@ -124,7 +124,7 @@ class ToDos extends Component {
                     onChangedCheckbox={this.handleUpdateCheckboxValue}
                     completed={this.state.addTodo.completed}/>
                 <div className="nav-fragment">
-                    <h2 className="m-2 header center col-md-6">Current Todos</h2>
+                    <h2 className="header center col-md-6">Current Todos</h2>
                     {this.state.todos.map((t, i) => 
                         <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
                         children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
