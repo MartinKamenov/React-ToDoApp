@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import AppRoute from './AppRoute';
 
 ReactDOM.render(<AppRoute />, 
-    document.getElementById('root'));
+	document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
