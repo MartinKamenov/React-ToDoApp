@@ -112,23 +112,29 @@ class ToDos extends Component {
         return ( 
             <div className="container">
                 <h1 className="header center">Tasks App</h1>
-                <TodoStatus
-                    onCompleteAll={this.handleCompleteAll}
-                    onIncompleteAll={this.handleIncompleteAll}
-                    totalCount={this.state.todos.length}
-                    completedPercent={this.getCompletedPercent()}
-                    notCompletedPercent={this.getIncompletedPercent()}/>
-                <AddToDo onAdd={this.handleAdd}
-                    addTodo={this.state.addTodo}
-                    onChangedInputValue={this.handleUpdateInputValue} 
-                    onChangedCheckbox={this.handleUpdateCheckboxValue}
-                    completed={this.state.addTodo.completed}/>
                 <div className="nav-fragment">
-                    <h2 className="header center col-md-6">Current Todos</h2>
-                    {this.state.todos.map((t, i) => 
-                        <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
-                        children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
-                    )}
+                    <TodoStatus
+                        onCompleteAll={this.handleCompleteAll}
+                        onIncompleteAll={this.handleIncompleteAll}
+                        totalCount={this.state.todos.length}
+                        completedPercent={this.getCompletedPercent()}
+                        notCompletedPercent={this.getIncompletedPercent()}/>
+                </div>
+                <div className="nav-fragment row">
+                    <AddToDo onAdd={this.handleAdd}
+                        addTodo={this.state.addTodo}
+                        onChangedInputValue={this.handleUpdateInputValue} 
+                        onChangedCheckbox={this.handleUpdateCheckboxValue}
+                        completed={this.state.addTodo.completed}/>
+                </div>
+                <div className="nav-fragment">
+                    <h2 className="header center">Current Todos</h2>
+                    <div className="row">
+                        {this.state.todos.map((t, i) => 
+                            <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
+                            children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
+                        )}
+                    </div>
                 </div>
             </div>
         );
