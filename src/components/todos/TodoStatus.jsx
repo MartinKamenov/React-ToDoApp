@@ -5,7 +5,7 @@ const TodoStatus = (props) => {
 		<div className="m-2 center">
 			<h2 className="m-2 header center">Status</h2>
 			<div className="center">Total count: {props.totalCount}</div>
-			<div className="percent-visualizer">
+			<div className="percent-visualizer inner-content">
 				<span className={ props.completedPercent.classList }
 					style={{ width: props.completedPercent.percent  }}>
 					Completed: { props.completedPercent.percent }
@@ -15,7 +15,7 @@ const TodoStatus = (props) => {
 					Not completed: { props.notCompletedPercent.percent }
 				</span>
 			</div>
-			<div>
+			<div className="inner-content">
 				<button onClick={props.onCompleteAll} className="m-2 btn btn-success">Completed</button>
 				<button onClick={props.onIncompleteAll} className="m-2 btn btn-danger">Incompleted</button>
 			</div>

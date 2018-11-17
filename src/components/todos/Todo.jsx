@@ -2,7 +2,7 @@ import React from 'react';
 
 const Todo = (props) => {
 	return (
-		<div className='todo col-md-6'>
+		<div className='inner-content col-md-6'>
 			<div className='row'>
 				<span className='status_changer col-md-4 center' onClick={() => props.onChange(props.id)}>
 					{props.todo.name}

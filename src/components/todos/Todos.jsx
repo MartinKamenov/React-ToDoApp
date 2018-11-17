@@ -120,7 +120,7 @@ class ToDos extends Component {
                         completedPercent={this.getCompletedPercent()}
                         notCompletedPercent={this.getIncompletedPercent()}/>
                 </div>
-                <div className="nav-fragment row">
+                <div className="nav-fragment">
                     <AddToDo onAdd={this.handleAdd}
                         addTodo={this.state.addTodo}
                         onChangedInputValue={this.handleUpdateInputValue} 
