@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTyes from 'prop-types';
 
 const AddTodo = (props) => {
 	return ( 
@@ -18,6 +19,16 @@ const AddTodo = (props) => {
 			</div>
 		</div>
 	);
+};
+
+AddTodo.propTypes = {
+	addTodo: PropTyes.shape({
+		name: PropTyes.string.isRequired,
+		completed: PropTyes.bool.isRequired
+	}),
+	onChangedInputValue: PropTyes.func.isRequired,
+	onChangedCheckbox: PropTyes.func.isRequired,
+	onAdd: PropTyes.func.isRequired
 };
  
 export default AddTodo;

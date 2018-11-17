@@ -1,14 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const Todo = (props) => {
 	return (
 		<div className='inner-content row'>
-			<span className='status_changer col-md-4 center' onClick={() => props.onChange(props.id)}>
+			<span className='status_changer col-sm-4 center' onClick={() => props.onChange(props.id)}>
 				{props.todo.name}
 			</span>
-			{props.children}
-			<div className="col-md-4 center">
+			<span className={'col-sm-4 center ' + (props.todoStatus.toLowerCase()) + props.todoStatus}>{props.todoStatus}</span>
+			<div className="col-sm-4 center">
 				<button className="delete-btn btn btn-danger"
 					onClick={() => props.onDelete(props.id)}>&times;
 				</button>
@@ -17,10 +17,13 @@ const Todo = (props) => {
 	);
 };
 
-/*Todo.propTypes = {
+Todo.propTypes = {
+	id: PropTypes.number.isRequired,
 	todo: PropTypes.object.isRequired,
 	children: PropTypes.node.isRequired,
-	onDelete: PropTypes.func
-};*/
+	onDelete: PropTypes.func,
+	todoStatus: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired
+};
 
 export default Todo;

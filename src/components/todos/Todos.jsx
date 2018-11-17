@@ -31,9 +31,8 @@ class ToDos extends Component {
 
     showStatusOfTodo(id) {
         const completed = this.state.todos[id].completed;
-        const classList = "col-md-4 center " + (completed ? "completed" : "incompleted");
         const status = this.state.todos[id].completed ? "Completed" : "Not completed";
-        return <span className={classList}>{status}</span>;
+        return status;
     }
 
     handleChange = (id) => {
@@ -132,7 +131,7 @@ class ToDos extends Component {
                     <div className="row">
                         {this.state.todos.map((t, i) => 
                             <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
-                            children={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
+                            todoStatus={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
                         )}
                     </div>
                 </div>
