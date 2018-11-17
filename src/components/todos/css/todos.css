@@ -61,20 +61,18 @@ span.incompleted-percenteger {
     display: none !important;
 }
 
-.todo {
+.inner-content {
     margin-top: 20px;
 }
 
 .status_changer {
     padding: 10px;
-    line-height: 100%;
     border: 2px solid transparent;
     border-radius: 10%;
 }
 .status_changer:hover {
     border-radius: 10px;
     padding: 10px;
-    line-height: 100%;
     border-bottom: 2px solid #ba0000;
     border-right: 2px solid #ba0000;
     border-top: 2px solid red;
@@ -107,6 +105,7 @@ span.incompleted-percenteger {
     -webkit-transform: scale(1.5); /* Safari and Chrome */
     -o-transform: scale(1.5); /* Opera */
     padding: 10px;
+    display: inline-block;
 }
 
 .center {
