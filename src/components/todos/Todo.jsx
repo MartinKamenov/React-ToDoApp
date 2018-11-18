@@ -7,7 +7,7 @@ const Todo = (props) => {
 			<span className='status_changer col-sm-4 center' onClick={() => props.onChange(props.id)}>
 				{props.todo.name}
 			</span>
-			<span className={'col-sm-4 center ' + (props.todoStatus.toLowerCase()) + props.todoStatus}>{props.todoStatus}</span>
+			<span className={'col-sm-4 center ' + (props.todoStatus.classList)}>{props.todoStatus.status}</span>
 			<div className="col-sm-4 center">
 				<button className="delete-btn btn btn-danger"
 					onClick={() => props.onDelete(props.id)}>&times;
@@ -22,7 +22,10 @@ Todo.propTypes = {
 	todo: PropTypes.object.isRequired,
 	children: PropTypes.node.isRequired,
 	onDelete: PropTypes.func,
-	todoStatus: PropTypes.string.isRequired,
+	todoStatus: PropTypes.shape({
+		classList: PropTypes.string.isRequired,
+		status: PropTypes.string.isRequired
+	}).isRequired,
 	onChange: PropTypes.func.isRequired
 };
 
