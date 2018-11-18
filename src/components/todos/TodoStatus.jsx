@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TodoStatus = (props) => {
 	return (
@@ -21,6 +22,14 @@ const TodoStatus = (props) => {
 			</div>
 		</div>
 	);
+};
+
+TodoStatus.propTypes = {
+	totalCount: PropTypes.number.isRequired,
+	completedPercent: PropTypes.string.isRequired,
+	notCompletedPercent: PropTypes.string.isRequired,
+	onCompleteAll: PropTypes.func.isRequired,
+	onIncompleteAll: PropTypes.func.isRequired
 };
  
 export default TodoStatus;
