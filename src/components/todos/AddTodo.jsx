@@ -6,7 +6,7 @@ const AddTodo = (props) => {
 		<div className="center">
 			<h2>Add new Todo</h2>
 			<br/>
-			<div className="row">
+			<div className="row todo">
 				<input className="todo-input col-md-4" value={props.addTodo.name} 
 					onChange={(ev) =>props.onChangedInputValue(ev)}
 					placeholder="Enter name" type="text"/>

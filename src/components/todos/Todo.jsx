@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Todo = (props) => {
 	return (
-		<div className='inner-content row'>
+		<div className='inner-content row todo'>
 			<span className='status_changer col-sm-4 center' onClick={() => props.onChange(props.id)}>
 				{props.todo.name}
 			</span>
