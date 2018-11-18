@@ -4,18 +4,16 @@ import App from './App';
 import About from './components/about/About';
 import NavBar from './components/navigationBar/NavBar';
 
-const AppRoute = () => {
-	return (
-		<Router>
+const AppRoute = () => (
+	<Router>
+		<div>
+			<NavBar/>
 			<div>
-				<NavBar/>
-				<div>
-					<Route exact path="/" component={App} />
-					<Route path="/about" component={About} />
-				</div>
+				<Route exact path="/" component={App} />
+				<Route path="/about" component={About} />
 			</div>
-		</Router>
-	);
-};
+		</div>
+	</Router>
+);
  
 export default AppRoute;

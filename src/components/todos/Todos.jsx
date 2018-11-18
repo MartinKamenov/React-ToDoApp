@@ -29,14 +29,14 @@ class ToDos extends Component {
         this.setState({ addTodo });
     }
 
-    showStatusOfTodo(id) {
+    showStatusOfTodo = id => {
         const completed = this.state.todos[id].completed;
         const classList = completed ? "completed" : "incompleted";
         const status = this.state.todos[id].completed ? "Completed" : "Not completed";
-        return {classList, status};
+        return { classList, status };
     }
 
-    handleChange = (id) => {
+    handleChange = id => {
         const todos = this.state.todos;
         const todo = this.state.todos[id];
         todo.completed = !todo.completed;
@@ -80,7 +80,7 @@ class ToDos extends Component {
         this.setState({ todos });
     }
 
-    getCompletedPercent() {
+    getCompletedPercent = () => {
         const todos = this.state.todos;
         const completedTodos = todos.filter(t => t.completed).length;
         const percent = (( completedTodos / todos.length) * 100).toFixed(2);
@@ -94,7 +94,7 @@ class ToDos extends Component {
         return { percent: percent + '%', classList };
     }
 
-    getIncompletedPercent() {
+    getIncompletedPercent = () => {
         const todos = this.state.todos;
         const incompletedTodos = todos.filter(t => !t.completed).length;
         const percent = ((incompletedTodos / todos.length) * 100).toFixed(2);
@@ -108,37 +108,35 @@ class ToDos extends Component {
         return { percent: percent + '%', classList };
     }
 
-    render() { 
-        return ( 
-            <div className="container">
-                <h1 className="header center">Tasks App</h1>
-                <div className="nav-fragment">
-                    <TodoStatus
-                        onCompleteAll={this.handleCompleteAll}
-                        onIncompleteAll={this.handleIncompleteAll}
-                        totalCount={this.state.todos.length}
-                        completedPercent={this.getCompletedPercent()}
-                        notCompletedPercent={this.getIncompletedPercent()}/>
-                </div>
-                <div className="nav-fragment">
-                    <AddToDo onAdd={this.handleAdd}
-                        addTodo={this.state.addTodo}
-                        onChangedInputValue={this.handleUpdateInputValue} 
-                        onChangedCheckbox={this.handleUpdateCheckboxValue}
-                        completed={this.state.addTodo.completed}/>
-                </div>
-                <div className="nav-fragment">
-                    <h2 className="header center">Current Todos</h2>
-                    {this.state.todos.map((t, i) => 
-                        <div className="center">
-                            <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
-                            todoStatus={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
-                        </div>
-                    )}
-                </div>
+    render = () => ( 
+        <div className="container">
+            <h1 className="header center">Tasks App</h1>
+            <div className="nav-fragment">
+                <TodoStatus
+                    onCompleteAll={this.handleCompleteAll}
+                    onIncompleteAll={this.handleIncompleteAll}
+                    totalCount={this.state.todos.length}
+                    completedPercent={this.getCompletedPercent()}
+                    notCompletedPercent={this.getIncompletedPercent()}/>
             </div>
-        );
-    }
+            <div className="nav-fragment">
+                <AddToDo onAdd={this.handleAdd}
+                    addTodo={this.state.addTodo}
+                    onChangedInputValue={this.handleUpdateInputValue} 
+                    onChangedCheckbox={this.handleUpdateCheckboxValue}
+                    completed={this.state.addTodo.completed}/>
+            </div>
+            <div className="nav-fragment">
+                <h2 className="header center">Current Todos</h2>
+                {this.state.todos.map((t, i) => 
+                    <div className="center">
+                        <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
+                        todoStatus={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 }
  
 export default ToDos;
