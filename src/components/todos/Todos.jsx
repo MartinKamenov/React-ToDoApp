@@ -129,12 +129,12 @@ class ToDos extends Component {
                 </div>
                 <div className="nav-fragment">
                     <h2 className="header center">Current Todos</h2>
-                    <div className="row">
-                        {this.state.todos.map((t, i) => 
+                    {this.state.todos.map((t, i) => 
+                        <div className="center">
                             <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
                             todoStatus={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         );

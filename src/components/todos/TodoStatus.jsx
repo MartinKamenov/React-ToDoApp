@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const TodoStatus = (props) => {
 	return (
-		<div className="m-2 center">
-			<h2 className="m-2 header center">Status</h2>
+		<div className="center">
+			<h2 className="header center">Status</h2>
 			<div className="center">Total count: {props.totalCount}</div>
-			<div className="percent-visualizer inner-content">
+			<div className="percent-visualizer inner-content center-child">
 				<span className={ props.completedPercent.classList }
 					style={{ width: props.completedPercent.percent  }}>
 					Completed: { props.completedPercent.percent }
