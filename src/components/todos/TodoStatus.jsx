@@ -24,8 +24,14 @@ const TodoStatus = (props) => (
 
 TodoStatus.propTypes = {
 	totalCount: PropTypes.number.isRequired,
-	completedPercent: PropTypes.string.isRequired,
-	notCompletedPercent: PropTypes.string.isRequired,
+	completedPercent: PropTypes.shape({
+		classList: PropTypes.string.isRequired,
+		percent: PropTypes.string.isRequired
+	}).isRequired,
+	notCompletedPercent: PropTypes.shape({
+		classList: PropTypes.string.isRequired,
+		percent: PropTypes.string.isRequired
+	}).isRequired,
 	onCompleteAll: PropTypes.func.isRequired,
 	onIncompleteAll: PropTypes.func.isRequired
 };

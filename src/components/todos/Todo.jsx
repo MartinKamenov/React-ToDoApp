@@ -24,7 +24,6 @@ const Todo = (props) => (
 Todo.propTypes = {
 	id: PropTypes.number.isRequired,
 	todo: PropTypes.object.isRequired,
-	children: PropTypes.node.isRequired,
 	onDelete: PropTypes.func,
 	todoStatus: PropTypes.shape({
 		classList: PropTypes.string.isRequired,

@@ -129,8 +129,8 @@ class ToDos extends Component {
             <div className="nav-fragment">
                 <h2 className="header center">Current Todos</h2>
                 {this.state.todos.map((t, i) => 
-                    <div className="center">
-                        <Todo key={i} todo={t} id={i} onChange={this.handleChange} 
+                    <div key={i} className="center">
+                        <Todo todo={t} id={i} onChange={this.handleChange} 
                         todoStatus={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
                     </div>
                 )}
