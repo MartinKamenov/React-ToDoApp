@@ -121,3 +121,9 @@ span.incompleted-percenteger {
 .center-child {
     margin: auto;
 }
+
+.todo-content {
+    margin: auto;
+    text-align: center;
+    max-width: 200px;
+}
