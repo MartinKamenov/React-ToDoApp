@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Todo = (props) => (
+const Todo = ({ onChange, todo, todoStatus, onDelete, id }) => (
 	<div className='inner-content row todo'>
 		<div className="col-sm-4">
-			<div className='todo-content status_changer center' onClick={() => props.onChange(props.id)}>
-				{props.todo.name}
+			<div className='todo-content status_changer center' onClick={() => onChange(id)}>
+				{todo.name}
 			</div>
 		</div>
 		<div className="col-sm-4">
-			<div className={'todo-content center ' + (props.todoStatus.classList)}>
-				{props.todoStatus.status}
+			<div className={'todo-content center ' + (todoStatus.classList)}>
+				{todoStatus.status}
 			</div>
 		</div>
 		<div className="col-sm-4">
 			<button className="delete-btn btn btn-danger"
-				onClick={() => props.onDelete(props.id)}>&times;
+				onClick={() => onDelete(id)}>&times;
 			</button>
 		</div>
 	</div>

@@ -1,23 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TodoStatus = (props) => (
+const TodoStatus = ({
+	totalCount,
+	completedPercent,
+	notCompletedPercent,
+	onCompleteAll,
+	onIncompleteAll
+}) => (
 	<div className="center">
 		<h2 className="header center">Status</h2>
-		<div className="center">Total count: {props.totalCount}</div>
+		<div className="center">Total count: {totalCount}</div>
 		<div className="percent-visualizer inner-content center-child">
-			<span className={ props.completedPercent.classList }
-				style={{ width: props.completedPercent.percent  }}>
-				Completed: { props.completedPercent.percent }
+			<span className={ completedPercent.classList }
+				style={{ width: completedPercent.percent  }}>
+				Completed: { completedPercent.percent }
 			</span>
-			<span className={ props.notCompletedPercent.classList }
-				style={{ width: props.notCompletedPercent.percent }}>
-				Not completed: { props.notCompletedPercent.percent }
+			<span className={ notCompletedPercent.classList }
+				style={{ width: notCompletedPercent.percent }}>
+				Not completed: { notCompletedPercent.percent }
 			</span>
 		</div>
 		<div className="inner-content">
-			<button onClick={props.onCompleteAll} className="m-2 btn btn-success">Completed</button>
-			<button onClick={props.onIncompleteAll} className="m-2 btn btn-danger">Incompleted</button>
+			<button onClick={onCompleteAll} className="m-2 btn btn-success">Completed</button>
+			<button onClick={onIncompleteAll} className="m-2 btn btn-danger">Incompleted</button>
 		</div>
 	</div>
 );
