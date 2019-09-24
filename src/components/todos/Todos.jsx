@@ -1,42 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Todo from './Todo';
 import './css/todos.css'
 import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
 
-class ToDos extends Component {
-    state = { 
-        todos: [
+const ToDos = () => {
+    const [todos, setTodos] = useState(
+        [
             { name: 'Create To Do app', completed: false },
             { name: 'Buy food', completed: false },
             { name: 'Feed the cat', completed: false }
-        ],
-        addTodo: {
+        ]
+    );
+
+    const [addTodo, setTodo] = useState(
+        {
             name: '',
             completed: false
         }
+    );
+
+    const handleUpdateInputValue = (evt) => {
+        setTodo({ ...addTodo, name: evt.target.value });
     }
 
-    handleUpdateInputValue = evt => {
-        const addTodo = this.state.addTodo;
-        addTodo.name = evt.target.value;
-        this.setState({ addTodo });
+    const handleUpdateCheckboxValue = () => {
+        setTodo({ ...addTodo, completed: !addTodo.completed });
     }
 
-    handleUpdateCheckboxValue = () => {
-        const addTodo = this.state.addTodo;
-        addTodo.completed = !addTodo.completed;
-        this.setState({ addTodo });
-    }
-
-    showStatusOfTodo = id => {
-        const completed = this.state.todos[id].completed;
+    const showStatusOfTodo = (id) => {
+        const completed = todos[id].completed;
         const classList = completed ? "completed" : "incompleted";
-        const status = this.state.todos[id].completed ? "Completed" : "Not completed";
+        const status = todos[id].completed ? "Completed" : "Not completed";
         return { classList, status };
     }
 
-    handleChange = id => {
+    const handleChange = id => {
         const todos = this.state.todos;
         const todo = this.state.todos[id];
         todo.completed = !todo.completed;
@@ -44,44 +43,36 @@ class ToDos extends Component {
         this.setState({todos});
     }
 
-    handleDelete = id => {
-        const todos = this.state.todos.filter((t, i) => i !== id);
-        this.setState({todos});
+    const handleDelete = id => {
+        setTodos(todos.filter((t, i) => i !== id));
     }
 
-    handleAdd = () => {
-        const newTodo = {
-            name: this.state.addTodo.name, 
-            completed: this.state.addTodo.completed
-        };
-        const todos = this.state.todos;
-        if(!(newTodo.name)) {
+    const handleAdd = () => {
+        if(!(addTodo.name)) {
             return;
         }
-        todos.push(newTodo);
-        this.setState({
-            todos: todos,
-            addTodo: {
-                name: "",
-                completed: false
-            }
+        const todosCopy = [...todos];
+        todosCopy.push(addTodo);
+        setTodos(todosCopy);
+        setTodo({
+            name: "",
+            completed: false
         });
     }
 
-    handleCompleteAll = () => {
+    const handleCompleteAll = () => {
         const todos = this.state.todos;
         todos.forEach(t => t.completed=true);
         this.setState({todos});
     }
 
-    handleIncompleteAll = () => {
-        const todos = this.state.todos;
-        todos.forEach(t => t.completed=false);
-        this.setState({ todos });
+    const handleIncompleteAll = () => {
+        const todosCopy = [...todos];
+        todosCopy.forEach(t => t.completed = false);
+        setTodos(todosCopy);
     }
 
-    getCompletedPercent = () => {
-        const todos = this.state.todos;
+    const getCompletedPercent = () => {
         const completedTodos = todos.filter(t => t.completed).length;
         const percent = (( completedTodos / todos.length) * 100).toFixed(2);
         let classList = 'completed-percenteger';
@@ -94,8 +85,7 @@ class ToDos extends Component {
         return { percent: percent + '%', classList };
     }
 
-    getIncompletedPercent = () => {
-        const todos = this.state.todos;
+    const getIncompletedPercent = () => {
         const incompletedTodos = todos.filter(t => !t.completed).length;
         const percent = ((incompletedTodos / todos.length) * 100).toFixed(2);
         let classList = 'incompleted-percenteger';
@@ -108,30 +98,30 @@ class ToDos extends Component {
         return { percent: percent + '%', classList };
     }
 
-    render = () => ( 
+    return (
         <div className="container">
             <h1 className="header center">Tasks App</h1>
             <div className="nav-fragment">
                 <TodoStatus
-                    onCompleteAll={this.handleCompleteAll}
-                    onIncompleteAll={this.handleIncompleteAll}
-                    totalCount={this.state.todos.length}
-                    completedPercent={this.getCompletedPercent()}
-                    notCompletedPercent={this.getIncompletedPercent()}/>
+                    onCompleteAll={handleCompleteAll}
+                    onIncompleteAll={handleIncompleteAll}
+                    totalCount={todos.length}
+                    completedPercent={getCompletedPercent()}
+                    notCompletedPercent={getIncompletedPercent()}/>
             </div>
             <div className="nav-fragment">
-                <AddToDo onAdd={this.handleAdd}
-                    addTodo={this.state.addTodo}
-                    onChangedInputValue={this.handleUpdateInputValue} 
-                    onChangedCheckbox={this.handleUpdateCheckboxValue}
-                    completed={this.state.addTodo.completed}/>
+                <AddToDo onAdd={handleAdd}
+                    addTodo={addTodo}
+                    onChangedInputValue={handleUpdateInputValue} 
+                    onChangedCheckbox={handleUpdateCheckboxValue}
+                    completed={addTodo.completed}/>
             </div>
             <div className="nav-fragment">
                 <h2 className="header center">Current Todos</h2>
-                {this.state.todos.map((t, i) => 
+                {todos.map((t, i) => 
                     <div key={i} className="center">
-                        <Todo todo={t} id={i} onChange={this.handleChange} 
-                        todoStatus={this.showStatusOfTodo(i)} onDelete={this.handleDelete}/>
+                        <Todo todo={t} id={i} onChange={handleChange} 
+                        todoStatus={showStatusOfTodo(i)} onDelete={handleDelete}/>
                     </div>
                 )}
             </div>
