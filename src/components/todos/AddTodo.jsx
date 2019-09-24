@@ -10,7 +10,7 @@ const AddTodo = ({ addTodo, onChangedInputValue, onChangedCheckbox, onAdd }) => 
 				onChange={(ev) => onChangedInputValue(ev)}
 				placeholder="Enter name" type="text"/>
 			<div className="col-sm-4">
-				<label style={{marginRight: '10px'}}>Status: </label>
+				<label style={{marginRight: '10px'}}>Completed: </label>
 				<input className="checkbox " type="checkbox"
 					onChange={ onChangedCheckbox} checked={ addTodo.completed }/>
 			</div>

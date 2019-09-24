@@ -36,14 +36,12 @@ const ToDos = () => {
     }
 
     const handleChange = id => {
-        const todos = this.state.todos;
-        const todo = this.state.todos[id];
-        todo.completed = !todo.completed;
-        todos[id] = todo;
-        this.setState({todos});
+        const todosCopy = [...todos];
+        todosCopy[id].completed = !todosCopy[id].completed;
+        setTodos(todosCopy);
     }
 
-    const handleDelete = id => {
+    const handleDelete = (id) => {
         setTodos(todos.filter((t, i) => i !== id));
     }
 
@@ -61,9 +59,9 @@ const ToDos = () => {
     }
 
     const handleCompleteAll = () => {
-        const todos = this.state.todos;
-        todos.forEach(t => t.completed=true);
-        this.setState({todos});
+        const todosCopy = [...todos];
+        todosCopy.forEach(t => t.completed=true);
+        setTodos(todosCopy);
     }
 
     const handleIncompleteAll = () => {
