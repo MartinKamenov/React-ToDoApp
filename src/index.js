@@ -5,8 +5,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import AppRoute from './AppRoute';
+import { createStore } from 'redux';
 
-ReactDOM.render(<AppRoute />, 
+function reducer(todos = [], action) {
+	switch (action.type) {
+	  case "Increment":
+		return todos;
+	  case "Decrement":
+		return todos;
+	  default:
+		return todos;
+	}
+}
+
+const store = createStore(reducer);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<AppRoute />
+	</Provider>, 
 	document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
