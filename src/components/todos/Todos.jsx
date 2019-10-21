@@ -3,15 +3,9 @@ import Todo from './Todo';
 import './css/todos.css'
 import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
+import { connect } from 'react-redux';
 
-const ToDos = () => {
-    const [todos, setTodos] = useState(
-        [
-            { name: 'Create To Do app', completed: false },
-            { name: 'Buy food', completed: false },
-            { name: 'Feed the cat', completed: false }
-        ]
-    );
+const ToDos = ({add, remove, todos}) => {
 
     const [addTodo, setTodo] = useState(
         {
@@ -30,44 +24,35 @@ const ToDos = () => {
 
     const showStatusOfTodo = (id) => {
         const completed = todos[id].completed;
-        const classList = completed ? "completed" : "incompleted";
-        const status = todos[id].completed ? "Completed" : "Not completed";
+        const classList = completed ? 'completed' : 'incompleted';
+        const status = todos[id].completed ? 'Completed' : 'Not completed';
         return { classList, status };
     }
 
     const handleChange = id => {
-        const todosCopy = [...todos];
-        todosCopy[id].completed = !todosCopy[id].completed;
-        setTodos(todosCopy);
+        // const todosCopy = [...todos];
+        // todosCopy[id].completed = !todosCopy[id].completed;
+        // setTodos(todosCopy);
     }
 
     const handleDelete = (id) => {
-        setTodos(todos.filter((t, i) => i !== id));
+        remove(id);
     }
 
     const handleAdd = () => {
-        if(!(addTodo.name)) {
-            return;
-        }
-        const todosCopy = [...todos];
-        todosCopy.push(addTodo);
-        setTodos(todosCopy);
-        setTodo({
-            name: "",
-            completed: false
-        });
+        add(addTodo);
     }
 
     const handleCompleteAll = () => {
-        const todosCopy = [...todos];
-        todosCopy.forEach(t => t.completed=true);
-        setTodos(todosCopy);
+        // const todosCopy = [...todos];
+        // todosCopy.forEach(t => t.completed=true);
+        // setTodos(todosCopy);
     }
 
     const handleIncompleteAll = () => {
-        const todosCopy = [...todos];
-        todosCopy.forEach(t => t.completed = false);
-        setTodos(todosCopy);
+        // const todosCopy = [...todos];
+        // todosCopy.forEach(t => t.completed = false);
+        // setTodos(todosCopy);
     }
 
     const getCompletedPercent = () => {
@@ -97,9 +82,9 @@ const ToDos = () => {
     }
 
     return (
-        <div className="container">
-            <h1 className="header center">Tasks App</h1>
-            <div className="nav-fragment">
+        <div className='container'>
+            <h1 className='header center'>Tasks App</h1>
+            <div className='nav-fragment'>
                 <TodoStatus
                     onCompleteAll={handleCompleteAll}
                     onIncompleteAll={handleIncompleteAll}
@@ -107,17 +92,17 @@ const ToDos = () => {
                     completedPercent={getCompletedPercent()}
                     notCompletedPercent={getIncompletedPercent()}/>
             </div>
-            <div className="nav-fragment">
+            <div className='nav-fragment'>
                 <AddToDo onAdd={handleAdd}
                     addTodo={addTodo}
                     onChangedInputValue={handleUpdateInputValue} 
                     onChangedCheckbox={handleUpdateCheckboxValue}
                     completed={addTodo.completed}/>
             </div>
-            <div className="nav-fragment">
-                <h2 className="header center">Current Todos</h2>
+            <div className='nav-fragment'>
+                <h2 className='header center'>Current Todos</h2>
                 {todos.map((t, i) => 
-                    <div key={i} className="center">
+                    <div key={i} className='center'>
                         <Todo todo={t} id={i} onChange={handleChange} 
                         todoStatus={showStatusOfTodo(i)} onDelete={handleDelete}/>
                     </div>
@@ -126,5 +111,16 @@ const ToDos = () => {
         </div>
     );
 }
- 
-export default ToDos;
+
+const mapStateToProps = state => {
+    return ({
+    todos: state
+})};
+  
+  // Dispatch to props
+const mapDispatchToProps = dispatch => ({
+    add: (todo) => (dispatch({ type: 'Add', todo })),
+    remove: (id) => (dispatch({ type: 'Remove', id }))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDos);

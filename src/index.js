@@ -3,18 +3,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as serviceWorker from './serviceWorker';
 import AppRoute from './AppRoute';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-function reducer(todos = [], action) {
+function reducer(todos = [
+	{ name: 'Create To Do app', completed: false },
+	{ name: 'Buy food', completed: false },
+	{ name: 'Feed the cat', completed: false }
+], action) {
 	switch (action.type) {
-	  case "Increment":
-		return todos;
-	  case "Decrement":
-		return todos;
+		case 'Add':
+			todos.push(action.todo);
+		return [...todos];
+	  case 'Remove':
+	  		todos.splice(action.id, 1);
+		return [...todos];
 	  default:
-		return todos;
+			return [...todos];
 	}
 }
 
@@ -25,8 +31,3 @@ ReactDOM.render(
 		<AppRoute />
 	</Provider>, 
 	document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();

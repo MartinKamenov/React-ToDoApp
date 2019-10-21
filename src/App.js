@@ -2,7 +2,7 @@ import React from 'react';
 import ToDos from './components/todos/Todos';
 
 const App = () => ( 
-	<div className="App">
+	<div className='App'>
 		<ToDos/>
 	</div>
 );
