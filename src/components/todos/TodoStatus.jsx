@@ -8,10 +8,10 @@ const TodoStatus = ({
 	onCompleteAll,
 	onIncompleteAll
 }) => (
-	<div className="center">
-		<h2 className="header center">Status</h2>
-		<div className="center">Total count: {totalCount}</div>
-		<div className="percent-visualizer inner-content center-child">
+	<div className='center'>
+		<h2 className='header center'>Status</h2>
+		<div className='center'>Total count: {totalCount}</div>
+		<div className='percent-visualizer inner-content center-child'>
 			<span className={ completedPercent.classList }
 				style={{ width: completedPercent.percent  }}>
 				Completed: { completedPercent.percent }
@@ -21,9 +21,9 @@ const TodoStatus = ({
 				Not completed: { notCompletedPercent.percent }
 			</span>
 		</div>
-		<div className="inner-content">
-			<button onClick={onCompleteAll} className="m-2 btn btn-success">Completed</button>
-			<button onClick={onIncompleteAll} className="m-2 btn btn-danger">Incompleted</button>
+		<div className='inner-content'>
+			<button onClick={onCompleteAll} className='m-2 btn btn-success'>Completed</button>
+			<button onClick={onIncompleteAll} className='m-2 btn btn-danger'>Incompleted</button>
 		</div>
 	</div>
 );

@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Todo from './Todo';
 import './css/todos.css'
 import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
 const ToDos = () => {
-    const [todos, setTodos] = useState(
-        [
-            { name: 'Create To Do app', completed: false },
-            { name: 'Buy food', completed: false },
-            { name: 'Feed the cat', completed: false }
-        ]
-    );
-
     const [addTodo, setTodo] = useState(
         {
             name: '',
@@ -20,8 +13,35 @@ const ToDos = () => {
         }
     );
 
-    const handleUpdateInputValue = (evt) => {
-        setTodo({ ...addTodo, name: evt.target.value });
+    const todos = useSelector(state => state);
+    const dispatch = useDispatch();
+    const add = useCallback(
+        (todo) => dispatch({ type: 'Add', todo }),
+        [dispatch]
+    );
+
+    const remove = useCallback(
+        (id) => dispatch({ type: 'Remove', id }),
+        [dispatch]
+    );
+
+    const update = useCallback(
+        (id) => dispatch({ type: 'Update', id }),
+        [dispatch]
+    );
+
+    const completeAll = useCallback(
+        () => dispatch({ type: 'CompleteAll' }),
+        [dispatch]
+    );
+
+    const incompleteAll = useCallback(
+        () => dispatch({ type: 'IncompleteAll' }),
+        [dispatch]
+    );
+
+    const handleUpdateInputValue = ({ target: { value }}) => {
+        setTodo({ ...addTodo, name: value });
     }
 
     const handleUpdateCheckboxValue = () => {
@@ -30,44 +50,9 @@ const ToDos = () => {
 
     const showStatusOfTodo = (id) => {
         const completed = todos[id].completed;
-        const classList = completed ? "completed" : "incompleted";
-        const status = todos[id].completed ? "Completed" : "Not completed";
+        const classList = completed ? 'completed' : 'incompleted';
+        const status = todos[id].completed ? 'Completed' : 'Not completed';
         return { classList, status };
-    }
-
-    const handleChange = id => {
-        const todosCopy = [...todos];
-        todosCopy[id].completed = !todosCopy[id].completed;
-        setTodos(todosCopy);
-    }
-
-    const handleDelete = (id) => {
-        setTodos(todos.filter((t, i) => i !== id));
-    }
-
-    const handleAdd = () => {
-        if(!(addTodo.name)) {
-            return;
-        }
-        const todosCopy = [...todos];
-        todosCopy.push(addTodo);
-        setTodos(todosCopy);
-        setTodo({
-            name: "",
-            completed: false
-        });
-    }
-
-    const handleCompleteAll = () => {
-        const todosCopy = [...todos];
-        todosCopy.forEach(t => t.completed=true);
-        setTodos(todosCopy);
-    }
-
-    const handleIncompleteAll = () => {
-        const todosCopy = [...todos];
-        todosCopy.forEach(t => t.completed = false);
-        setTodos(todosCopy);
     }
 
     const getCompletedPercent = () => {
@@ -97,34 +82,34 @@ const ToDos = () => {
     }
 
     return (
-        <div className="container">
-            <h1 className="header center">Tasks App</h1>
-            <div className="nav-fragment">
+        <div className='container'>
+            <h1 className='header center'>Tasks App</h1>
+            <div className='nav-fragment'>
                 <TodoStatus
-                    onCompleteAll={handleCompleteAll}
-                    onIncompleteAll={handleIncompleteAll}
+                    onCompleteAll={completeAll}
+                    onIncompleteAll={incompleteAll}
                     totalCount={todos.length}
                     completedPercent={getCompletedPercent()}
                     notCompletedPercent={getIncompletedPercent()}/>
             </div>
-            <div className="nav-fragment">
-                <AddToDo onAdd={handleAdd}
+            <div className='nav-fragment'>
+                <AddToDo onAdd={() => { add(addTodo); }}
                     addTodo={addTodo}
                     onChangedInputValue={handleUpdateInputValue} 
                     onChangedCheckbox={handleUpdateCheckboxValue}
                     completed={addTodo.completed}/>
             </div>
-            <div className="nav-fragment">
-                <h2 className="header center">Current Todos</h2>
+            <div className='nav-fragment'>
+                <h2 className='header center'>Current Todos</h2>
                 {todos.map((t, i) => 
-                    <div key={i} className="center">
-                        <Todo todo={t} id={i} onChange={handleChange} 
-                        todoStatus={showStatusOfTodo(i)} onDelete={handleDelete}/>
+                    <div key={i} className='center'>
+                        <Todo todo={t} id={i} onChange={update}
+                        todoStatus={showStatusOfTodo(i)} onDelete={() => { remove(i); }}/>
                     </div>
                 )}
             </div>
         </div>
     );
 }
- 
+
 export default ToDos;

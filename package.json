@@ -7,15 +7,19 @@
     "@types/jquery": "^3.3.22",
     "@types/popper.js": "^1.11.0",
     "@types/react-bootstrap": "^0.32.14",
+    "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^4.3.1",
+    "@types/redux": "^3.6.0",
     "bootstrap": "^3.3.7",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.5",
     "react": "^16.9.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^3.1.1"
+    "react-scripts": "^3.1.1",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
