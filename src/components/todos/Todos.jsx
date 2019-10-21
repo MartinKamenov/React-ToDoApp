@@ -16,8 +16,8 @@ const ToDos = () => {
     const todos = useSelector(state => state);
     const dispatch = useDispatch();
     const add = useCallback(
-        (todo) => dispatch({ type: 'Add', todo }),
-        [dispatch]
+        () => dispatch({ type: 'Add', todo: addTodo }),
+        [dispatch, addTodo]
     );
 
     const remove = useCallback(
@@ -93,7 +93,7 @@ const ToDos = () => {
                     notCompletedPercent={getIncompletedPercent()}/>
             </div>
             <div className='nav-fragment'>
-                <AddToDo onAdd={() => { add(addTodo); }}
+                <AddToDo onAdd={add}
                     addTodo={addTodo}
                     onChangedInputValue={handleUpdateInputValue} 
                     onChangedCheckbox={handleUpdateCheckboxValue}
