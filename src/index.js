@@ -15,11 +15,20 @@ function reducer(todos = [
 	switch (action.type) {
 		case 'Add':
 			todos.push(action.todo);
-		return [...todos];
-	  case 'Remove':
-	  		todos.splice(action.id, 1);
-		return [...todos];
-	  default:
+			return [...todos];
+		case 'Remove':
+			todos.splice(action.id, 1);
+			return [...todos];
+		case 'Update':
+			todos[action.id].completed = !todos[action.id].completed;
+			return [...todos];
+		case 'CompleteAll':
+			todos.forEach(t => { t.completed = true; });
+			return [...todos];
+		case 'IncompleteAll':
+			todos.forEach(t => { t.completed = false; });
+			return [...todos];
+		default:
 			return [...todos];
 	}
 }

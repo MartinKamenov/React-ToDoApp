@@ -5,7 +5,7 @@ import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
 import { connect } from 'react-redux';
 
-const ToDos = ({add, remove, todos}) => {
+const ToDos = ({add, remove, update, completeAll, incompleteAll, todos}) => {
 
     const [addTodo, setTodo] = useState(
         {
@@ -14,8 +14,8 @@ const ToDos = ({add, remove, todos}) => {
         }
     );
 
-    const handleUpdateInputValue = (evt) => {
-        setTodo({ ...addTodo, name: evt.target.value });
+    const handleUpdateInputValue = ({ target: { value }}) => {
+        setTodo({ ...addTodo, name: value });
     }
 
     const handleUpdateCheckboxValue = () => {
@@ -29,30 +29,12 @@ const ToDos = ({add, remove, todos}) => {
         return { classList, status };
     }
 
-    const handleChange = id => {
-        // const todosCopy = [...todos];
-        // todosCopy[id].completed = !todosCopy[id].completed;
-        // setTodos(todosCopy);
-    }
-
     const handleDelete = (id) => {
         remove(id);
     }
 
     const handleAdd = () => {
         add(addTodo);
-    }
-
-    const handleCompleteAll = () => {
-        // const todosCopy = [...todos];
-        // todosCopy.forEach(t => t.completed=true);
-        // setTodos(todosCopy);
-    }
-
-    const handleIncompleteAll = () => {
-        // const todosCopy = [...todos];
-        // todosCopy.forEach(t => t.completed = false);
-        // setTodos(todosCopy);
     }
 
     const getCompletedPercent = () => {
@@ -86,8 +68,8 @@ const ToDos = ({add, remove, todos}) => {
             <h1 className='header center'>Tasks App</h1>
             <div className='nav-fragment'>
                 <TodoStatus
-                    onCompleteAll={handleCompleteAll}
-                    onIncompleteAll={handleIncompleteAll}
+                    onCompleteAll={completeAll}
+                    onIncompleteAll={incompleteAll}
                     totalCount={todos.length}
                     completedPercent={getCompletedPercent()}
                     notCompletedPercent={getIncompletedPercent()}/>
@@ -103,7 +85,7 @@ const ToDos = ({add, remove, todos}) => {
                 <h2 className='header center'>Current Todos</h2>
                 {todos.map((t, i) => 
                     <div key={i} className='center'>
-                        <Todo todo={t} id={i} onChange={handleChange} 
+                        <Todo todo={t} id={i} onChange={update}
                         todoStatus={showStatusOfTodo(i)} onDelete={handleDelete}/>
                     </div>
                 )}
@@ -112,15 +94,17 @@ const ToDos = ({add, remove, todos}) => {
     );
 }
 
-const mapStateToProps = state => {
-    return ({
+const mapStateToProps = state => ({
     todos: state
-})};
+});
   
   // Dispatch to props
 const mapDispatchToProps = dispatch => ({
     add: (todo) => (dispatch({ type: 'Add', todo })),
-    remove: (id) => (dispatch({ type: 'Remove', id }))
+    remove: (id) => (dispatch({ type: 'Remove', id })),
+    update: (id) => (dispatch({ type: 'Update', id })),
+    completeAll: () => (dispatch({ type: 'CompleteAll' })),
+    incompleteAll: () => (dispatch({ type: 'IncompleteAll' })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDos);
