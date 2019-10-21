@@ -3,7 +3,7 @@ import Todo from './Todo';
 import './css/todos.css'
 import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const ToDos = () => {
     const [addTodo, setTodo] = useState(
