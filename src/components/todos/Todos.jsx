@@ -5,6 +5,9 @@ import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
 import { useSelector, useDispatch } from 'react-redux';
 
+// Check this medium example for refactoring using react hooks:
+// https://itnext.io/how-to-use-redux-with-react-hooks-5422a7ceae6e
+
 const ToDos = () => {
     const [addTodo, setTodo] = useState(
         {
@@ -15,8 +18,12 @@ const ToDos = () => {
 
     const todos = useSelector(state => state);
     const dispatch = useDispatch();
+
+    // UseCallback uses react memo for optimizing performance
+    // Check https://stackoverflow.com/questions/53159301/what-does-usecallback-usememo-do-in-react
     const add = useCallback(
         () => dispatch({ type: 'Add', todo: addTodo }),
+        // Subscribe to changes addTodo variable
         [dispatch, addTodo]
     );
 
@@ -104,7 +111,7 @@ const ToDos = () => {
                 {todos.map((t, i) => 
                     <div key={i} className='center'>
                         <Todo todo={t} id={i} onChange={update}
-                        todoStatus={showStatusOfTodo(i)} onDelete={() => { remove(i); }}/>
+                        todoStatus={showStatusOfTodo(i)} onDelete={() => remove(i)}/>
                     </div>
                 )}
             </div>
