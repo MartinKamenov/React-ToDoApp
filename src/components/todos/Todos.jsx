@@ -5,7 +5,14 @@ import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
 import { connect } from 'react-redux';
 
-const ToDos = ({add, remove, update, completeAll, incompleteAll, todos}) => {
+const ToDos = ({
+    add,
+    remove,
+    update,
+    completeAll,
+    incompleteAll,
+    todos
+}) => {
 
     const [addTodo, setTodo] = useState(
         {
@@ -27,14 +34,6 @@ const ToDos = ({add, remove, update, completeAll, incompleteAll, todos}) => {
         const classList = completed ? 'completed' : 'incompleted';
         const status = todos[id].completed ? 'Completed' : 'Not completed';
         return { classList, status };
-    }
-
-    const handleDelete = (id) => {
-        remove(id);
-    }
-
-    const handleAdd = () => {
-        add(addTodo);
     }
 
     const getCompletedPercent = () => {
@@ -75,7 +74,7 @@ const ToDos = ({add, remove, update, completeAll, incompleteAll, todos}) => {
                     notCompletedPercent={getIncompletedPercent()}/>
             </div>
             <div className='nav-fragment'>
-                <AddToDo onAdd={handleAdd}
+                <AddToDo onAdd={() => { add(addTodo); }}
                     addTodo={addTodo}
                     onChangedInputValue={handleUpdateInputValue} 
                     onChangedCheckbox={handleUpdateCheckboxValue}
@@ -86,7 +85,7 @@ const ToDos = ({add, remove, update, completeAll, incompleteAll, todos}) => {
                 {todos.map((t, i) => 
                     <div key={i} className='center'>
                         <Todo todo={t} id={i} onChange={update}
-                        todoStatus={showStatusOfTodo(i)} onDelete={handleDelete}/>
+                        todoStatus={showStatusOfTodo(i)} onDelete={() => { remove(i); }}/>
                     </div>
                 )}
             </div>
@@ -97,8 +96,7 @@ const ToDos = ({add, remove, update, completeAll, incompleteAll, todos}) => {
 const mapStateToProps = state => ({
     todos: state
 });
-  
-  // Dispatch to props
+
 const mapDispatchToProps = dispatch => ({
     add: (todo) => (dispatch({ type: 'Add', todo })),
     remove: (id) => (dispatch({ type: 'Remove', id })),
