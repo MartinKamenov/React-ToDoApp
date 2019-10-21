@@ -14,7 +14,10 @@ function reducer(todos = [
 ], action) {
 	switch (action.type) {
 		case 'Add':
-			todos.push(action.todo);
+			if(!action.todo || !action.todo.name) {
+				return [...todos];
+			}
+			todos.push(Object.assign({}, action.todo));
 			return [...todos];
 		case 'Remove':
 			todos.splice(action.id, 1);

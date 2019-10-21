@@ -1,24 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Todo from './Todo';
 import './css/todos.css'
 import AddToDo from './AddTodo';
 import TodoStatus from './TodoStatus';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
-const ToDos = ({
-    add,
-    remove,
-    update,
-    completeAll,
-    incompleteAll,
-    todos
-}) => {
-
+const ToDos = () => {
     const [addTodo, setTodo] = useState(
         {
             name: '',
             completed: false
         }
+    );
+
+    const todos = useSelector(state => state);
+    const dispatch = useDispatch();
+    const add = useCallback(
+        (todo) => dispatch({ type: 'Add', todo }),
+        [dispatch]
+    );
+
+    const remove = useCallback(
+        (id) => dispatch({ type: 'Remove', id }),
+        [dispatch]
+    );
+
+    const update = useCallback(
+        (id) => dispatch({ type: 'Update', id }),
+        [dispatch]
+    );
+
+    const completeAll = useCallback(
+        () => dispatch({ type: 'CompleteAll' }),
+        [dispatch]
+    );
+
+    const incompleteAll = useCallback(
+        () => dispatch({ type: 'IncompleteAll' }),
+        [dispatch]
     );
 
     const handleUpdateInputValue = ({ target: { value }}) => {
@@ -93,16 +112,4 @@ const ToDos = ({
     );
 }
 
-const mapStateToProps = state => ({
-    todos: state
-});
-
-const mapDispatchToProps = dispatch => ({
-    add: (todo) => (dispatch({ type: 'Add', todo })),
-    remove: (id) => (dispatch({ type: 'Remove', id })),
-    update: (id) => (dispatch({ type: 'Update', id })),
-    completeAll: () => (dispatch({ type: 'CompleteAll' })),
-    incompleteAll: () => (dispatch({ type: 'IncompleteAll' })),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ToDos);
+export default ToDos;
